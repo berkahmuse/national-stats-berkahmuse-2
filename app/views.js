@@ -42,7 +42,7 @@ const METRICS = {
   population: {
     label: "Population", series: POPULATION, unit: "m",
     kind: "line", format: (v) => v.toFixed(0), source: "World Bank WDI, rounded to the nearest million.",
-    note: "Indonesia passed 280 million people in 2023 and is the world's fourth most populous country.",
+    note: "Indonesia passed 280 million people in 2024 and is the world's fourth most populous country.",
   },
   inflation: {
     label: "Inflation", series: INFLATION, unit: "%",
@@ -99,7 +99,7 @@ export function sectorChart(view) {
   const items = [...SECTORS].sort((a, b) => b.share - a.share);
   const body = view === "value"
     ? hbarChart(items, { format: (v) => "Rp " + v.toLocaleString("en-US") + "tn", max: 4500 })
-    : hbarChart(items, { format: (v) => v.toFixed(1) + "%", max: 20 });
+    : hbarChart(items.map((d) => ({ name: d.name, value: d.share })), { format: (v) => v.toFixed(1) + "%", max: 20 });
   const buttons = `<button type="button" class="chip${view === "share" ? " on" : ""}" data-sector-view="share">Share of GDP</button>` +
     `<button type="button" class="chip${view === "value" ? " on" : ""}" data-sector-view="value">Value, Rp trillion</button>`;
   return chartCard("What the economy is made of — 2024", body,
@@ -166,7 +166,7 @@ export function renderPeople(state) {
     AGE_GROUPS.map((a) => `<div class="age-row"><span>${a.group}</span>${donut(a.pct)}<span class="age-people">${a.people} people</span></div>`).join("") +
     `</div>${srcLine("World Bank WDI, 2024. Two in three Indonesians are of working age (15–64).")}</section>` +
     kpiGrid(DEMOGRAPHICS) +
-    `<section class="card"><h2>The 11 largest provinces</h2><p class="card-intro">Sort the table, search it, or filter by island. Together these 11 provinces hold about 70% of the country.</p><div id="prov-table">${provinceTable(state)}</div></section>`;
+    `<section class="card"><h2>The 11 largest provinces</h2><p class="card-intro">Sort the table, search it, or filter by island. Together these 11 provinces hold about 74% of the country.</p><div id="prov-table">${provinceTable(state)}</div></section>`;
 }
 
 // ---- Education ------------------------------------------------------------

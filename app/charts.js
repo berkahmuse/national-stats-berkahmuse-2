@@ -101,13 +101,15 @@ export function hbarChart(items, { color = C.pine, height = null, format = (v) =
   const rowH = 34, padL = 210, padR = 64, padT = 8, padB = 8;
   const H = height ?? padT + padB + items.length * rowH;
   const W = 720;
-  const top = max ?? niceMax(Math.max(...items.map((d) => d.value)));
+  const top = max ?? niceMax(Math.max(...items.map((d) => Math.abs(d.value))));
   const iw = W - padL - padR;
   let rows = "";
   items.forEach((d, i) => {
     const y = padT + i * rowH;
-    const w = Math.max(2, (d.value / top) * iw);
-    const fill = i % 2 === 0 ? color : C.pineLight;
+    // Negative values (e.g. imports in GDP by expenditure) are drawn with
+    // their magnitude, in the negative colour, so the bar stays visible.
+    const w = Math.max(2, (Math.abs(d.value) / top) * iw);
+    const fill = d.value < 0 ? C.negative : (i % 2 === 0 ? color : C.pineLight);
     rows += `<text x="${padL - 10}" y="${y + 21}" text-anchor="end" font-size="12.5" fill="${C.ink}">${esc(d.name)}</text>` +
       `<rect x="${padL}" y="${y + 6}" width="${w.toFixed(1)}" height="18" rx="3" fill="${fill}"/>` +
       `<text x="${(padL + w + 8).toFixed(1)}" y="${y + 21}" font-size="12" font-weight="600" fill="${C.ink}">${format(d.value)}</text>`;

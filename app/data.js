@@ -33,7 +33,7 @@ export const POPULATION = [
   { year: 2015, value: 258 }, { year: 2016, value: 261 }, { year: 2017, value: 264 },
   { year: 2018, value: 267 }, { year: 2019, value: 270 }, { year: 2020, value: 272 },
   { year: 2021, value: 274 }, { year: 2022, value: 275 }, { year: 2023, value: 277 },
-  { year: 2024, value: 282 },
+  { year: 2024, value: 284 },
 ];
 
 export const INFLATION = [
@@ -139,8 +139,8 @@ export const PROVINCES = [
   { name: "East Java", island: "Java", pop: 41.8 },
   { name: "Central Java", island: "Java", pop: 37.9 },
   { name: "North Sumatra", island: "Sumatra", pop: 15.6 },
-  { name: "Banten", island: "Java", pop: 11.8 },
-  { name: "Jakarta", island: "Java", pop: 11.1 },
+  { name: "Banten", island: "Java", pop: 12.4 },
+  { name: "Jakarta", island: "Java", pop: 10.7 },
   { name: "South Sulawesi", island: "Sulawesi", pop: 9.5 },
   { name: "Lampung", island: "Sumatra", pop: 9.4 },
   { name: "South Sumatra", island: "Sumatra", pop: 8.8 },
